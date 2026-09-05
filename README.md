@@ -65,21 +65,22 @@ From a local clone, install all seven for Codex without prompts:
 npx skills@1.5.9 add . --agent codex --yes
 ```
 
-After publication, install directly from GitHub:
+Install directly from GitHub:
 
 ```bash
 npx skills@1.5.9 add smukh/a11y-agent-skills --agent codex --yes
 ```
 
-The local form is covered by release acceptance. The remote shorthand must be
-checked once against the private GitHub repository before public launch.
+Release acceptance covers the local form. The remote shorthand has also been
+tested from an anonymous environment against the public repository.
 
 - **Codex:** install the repository as a plugin, or copy `skills/*` into
   `~/.agents/skills/`.
-- **Claude Code:** add the repository as a marketplace and install
-  `a11y-agent-skills`, or copy the folders into `.claude/skills/`.
-- **Cursor:** use `npx skills@1.5.9 add smukh/a11y-agent-skills` after
-  publication and select Cursor, or copy the folders into `.cursor/skills/`.
+- **Claude Code:** run `/plugin marketplace add smukh/a11y-agent-skills`, then
+  `/plugin install a11y-agent-skills@a11y-agent-skills`. You can also copy the
+  folders into `.claude/skills/`.
+- **Cursor:** use `npx skills@1.5.9 add smukh/a11y-agent-skills` and select
+  Cursor, or copy the folders into `.cursor/skills/`.
 - **Generic Agent Skills hosts:** point the host at `skills/`, following the
   [Agent Skills specification](https://agentskills.io/specification).
 
