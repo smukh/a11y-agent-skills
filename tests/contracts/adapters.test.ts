@@ -4,14 +4,14 @@ import YAML from "yaml";
 import { describe, expect, it } from "vitest";
 
 describe("thin adapter contracts", () => {
-  it("ships a Node 20 action with explicit failure and private-network inputs", async () => {
+  it("ships a Node 24 action with explicit failure and private-network inputs", async () => {
     const action = YAML.parse(
       await readFile(resolve("packages/github-action/action.yml"), "utf8")
     ) as {
       inputs: Record<string, unknown>;
       runs: { using: string; main: string };
     };
-    expect(action.runs).toEqual({ using: "node20", main: "dist/index.js" });
+    expect(action.runs).toEqual({ using: "node24", main: "dist/index.cjs" });
     expect(action.inputs).toHaveProperty("fail-on");
     expect(action.inputs).toHaveProperty("allow-private-network");
   });

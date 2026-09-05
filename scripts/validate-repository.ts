@@ -90,7 +90,6 @@ for (const packagePath of packagePaths.filter((path) =>
 for (const schema of [
   "evals/cases/catalog.json",
   "evals/expected/catalog.json",
-  "evals/results/schema.json",
   "evals/review-schema.json",
   "mcp.json",
   ".mcp.json"
@@ -153,12 +152,26 @@ if (await exists(actionDist)) {
         `packages/github-action/dist/${generatedFile}: generated declaration artifact must be pruned`
       );
   }
-  const actionBundle = resolve(actionDist, "index.js");
-  if (await exists(actionBundle)) {
+  const actionBundle = resolve(actionDist, "index.cjs");
+  if (!(await exists(actionBundle))) {
+    errors.push(
+      "packages/github-action/dist/index.cjs: self-contained Action bundle is missing"
+    );
+  } else {
     const bundle = await readFile(actionBundle, "utf8");
     const localHome = process.env.HOME;
     if (localHome && bundle.includes(localHome))
       errors.push("GitHub Action bundle contains an absolute local home path");
+  }
+  for (const vendoredFile of [
+    "node_modules/axe-core/axe.js",
+    "node_modules/axe-core/LICENSE",
+    "node_modules/axe-core/LICENSE-3RD-PARTY.txt"
+  ]) {
+    if (!(await exists(resolve(actionDist, vendoredFile))))
+      errors.push(
+        `packages/github-action/dist/${vendoredFile}: required vendored runtime file is missing`
+      );
   }
 }
 

@@ -1,7 +1,9 @@
 # Third-party notices
 
 This project depends on and links to the following third-party works. Their
-licenses apply to those works; no third-party source is vendored here.
+licenses apply to those works. The self-contained MCP and GitHub Action bundles
+vendor the pinned axe-core runtime plus its MPL-2.0 and third-party notices;
+other dependencies are bundled or installed through their package managers.
 
 | Work                                                                                            | Use                                                                     | License / terms             |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------- |

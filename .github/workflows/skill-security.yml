@@ -30,7 +30,15 @@ jobs:
         run: >-
           skill-scanner scan-all skills --recursive --use-behavioral
           --fail-on-severity high --format sarif --output skill-security.sarif
-      - uses: github/codeql-action/upload-sarif@5ba2889ada762081db2c4f32a729827dce632c7b # v3
+      - name: Preserve SARIF report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
+        with:
+          name: skill-security-sarif
+          path: skill-security.sarif
+          if-no-files-found: error
+      - name: Publish public-repository code-scanning results
+        uses: github/codeql-action/upload-sarif@fddeee1a7ece751b577e409a89057319e3172939 # v4
+        if: always() && github.event.repository.visibility == 'public'
         with:
           sarif_file: skill-security.sarif

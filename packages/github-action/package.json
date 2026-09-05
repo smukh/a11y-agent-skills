@@ -18,7 +18,7 @@
     "node": ">=20"
   },
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.cjs"
   },
   "files": [
     "dist",
@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "build": "tsc -b && pnpm bundle",
-    "bundle": "ncc build src/index.ts -o dist --minify && node ../../scripts/prune-action-dist.mjs",
+    "bundle": "node ../../scripts/clean-action-dist.mjs && ncc build plugin.cjs -o dist -e axe-core && node ../../scripts/prune-action-dist.mjs",
     "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
