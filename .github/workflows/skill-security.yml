@@ -1,6 +1,7 @@
 name: Skill security
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - "skills/**"
