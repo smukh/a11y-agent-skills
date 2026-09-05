@@ -1,0 +1,45 @@
+name: a11y-agent audit
+description:
+  Audit a supplied URL, optionally compare a baseline, upload JSON and SARIF,
+  and enforce an explicit threshold.
+author: a11y-agent-skills contributors
+inputs:
+  url:
+    description: Preview or local HTTP(S) URL to audit
+    required: true
+  baseline:
+    description: Optional checked-in baseline audit JSON
+    required: false
+  state-label:
+    description: Stable page or component state label
+    required: false
+    default: default
+  route-label:
+    description: Optional stable route when preview URLs vary
+    required: false
+  ready-selector:
+    description: Optional visible selector that marks the audited state as ready
+    required: false
+  axe-tags:
+    description: Comma-separated axe tags
+    required: false
+    default: wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa
+  fail-on:
+    description:
+      Explicit impact threshold (none, minor, moderate, serious, critical)
+    required: false
+    default: none
+  allow-private-network:
+    description: Explicitly allow private or loopback preview URLs
+    required: false
+    default: "false"
+  output-directory:
+    description: Project-local report directory
+    required: false
+    default: .a11y-agent/action
+runs:
+  using: node20
+  main: dist/index.js
+branding:
+  icon: check-circle
+  color: blue

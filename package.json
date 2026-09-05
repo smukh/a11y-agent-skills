@@ -1,0 +1,58 @@
+{
+  "name": "a11y-agent-skills",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Verification-first accessibility engineering skills and deterministic tooling for coding agents.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smukh/a11y-agent-skills.git"
+  },
+  "homepage": "https://github.com/smukh/a11y-agent-skills#readme",
+  "bugs": {
+    "url": "https://github.com/smukh/a11y-agent-skills/issues"
+  },
+  "type": "module",
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "build": "tsc -b && pnpm --filter @a11y-agent/react-fixture build && pnpm --filter @a11y-agent/mcp bundle && pnpm --filter @a11y-agent/github-action bundle",
+    "clean": "tsc -b --clean",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "typecheck": "tsc -b --pretty false && tsc -p tsconfig.eslint.json --pretty false && pnpm --filter @a11y-agent/react-fixture typecheck",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/contracts tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:browser": "vitest run tests/browser",
+    "test:acceptance": "vitest run tests/acceptance tests/integration",
+    "test:packages": "tsx scripts/test-package-install.ts",
+    "test:skills-install": "tsx scripts/test-skills-install.ts",
+    "contracts": "vitest run tests/contracts",
+    "validate:skills": "tsx scripts/validate-skills.ts",
+    "validate:repo": "tsx scripts/validate-repository.ts",
+    "fixtures:serve": "tsx scripts/serve-fixtures.ts",
+    "eval": "tsx evals/run.ts",
+    "ci": "pnpm format:check && pnpm build && pnpm lint && pnpm typecheck && pnpm validate:skills && pnpm validate:repo && pnpm test",
+    "ci:release": "pnpm run ci && pnpm test:packages && pnpm test:skills-install"
+  },
+  "devDependencies": {
+    "@a11y-agent/cli": "workspace:*",
+    "@changesets/cli": "^2.29.7",
+    "@eslint/js": "^9.35.0",
+    "@modelcontextprotocol/sdk": "^1.17.5",
+    "@types/node": "^22.18.0",
+    "eslint": "^9.35.0",
+    "globals": "^16.3.0",
+    "playwright": "1.58.0",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.42.0",
+    "vitest": "^3.2.4",
+    "yaml": "^2.8.1"
+  }
+}

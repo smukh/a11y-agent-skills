@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://a11y-agent.invalid/schemas/evaluation-review-1.0.0.json",
+  "title": "a11y-agent independent fix review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "reviewer",
+    "prohibitedOrMisleadingFixes",
+    "notes"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "reviewer": { "type": "string", "minLength": 1 },
+    "prohibitedOrMisleadingFixes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "unnecessary-aria",
+          "removed-functionality",
+          "hidden-content",
+          "fabricated-content",
+          "scanner-suppression"
+        ]
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+name: GitHub Action smoke test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  local-action:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
+        with:
+          version: 11.19.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Start fixture server
+        run: |
+          python3 -m http.server 4173 --directory fixtures/static >/tmp/a11y-fixture.log 2>&1 &
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:4173/gallery-broken.html >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/a11y-fixture.log
+          exit 1
+      - name: Run the repository's Action
+        uses: ./packages/github-action
+        with:
+          url: http://127.0.0.1:4173/gallery-broken.html
+          state-label: gallery
+          route-label: /gallery
+          ready-selector: body
+          fail-on: none
+          allow-private-network: true
+          output-directory: .a11y-agent/action-smoke
+      - name: Validate uploaded report sources
+        run: |
+          test -s .a11y-agent/action-smoke/a11y-agent-report.json
+          test -s .a11y-agent/action-smoke/a11y-agent-report.sarif
+          node -e 'JSON.parse(require("node:fs").readFileSync(".a11y-agent/action-smoke/a11y-agent-report.json", "utf8"))'
+          node -e 'JSON.parse(require("node:fs").readFileSync(".a11y-agent/action-smoke/a11y-agent-report.sarif", "utf8"))'

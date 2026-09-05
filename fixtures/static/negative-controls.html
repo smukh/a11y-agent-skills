@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Accessible negative controls</title>
+    <link rel="stylesheet" href="fixture.css" />
+  </head>
+  <body>
+    <header><h1>Unusual but accessible controls</h1></header>
+    <main>
+      <section>
+        <h2>Icon action</h2>
+        <button type="button">
+          <span aria-hidden="true">★</span
+          ><span class="visually-hidden">Save favorite</span>
+        </button>
+      </section>
+      <section>
+        <h2>Decorative image</h2>
+        <img src="product.svg" alt="" />
+      </section>
+      <section>
+        <h2>Read-only value</h2>
+        <label for="order">Order number</label
+        ><input id="order" value="A-104" readonly />
+      </section>
+      <section>
+        <h2>Native disclosure</h2>
+        <details>
+          <summary>Delivery timing</summary>
+          <p>Two business days.</p>
+        </details>
+      </section>
+    </main>
+  </body>
+</html>

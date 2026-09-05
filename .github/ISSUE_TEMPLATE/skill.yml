@@ -1,0 +1,26 @@
+name: Skill improvement
+description: Propose a focused workflow or boundary improvement.
+title: "[skill] "
+labels: [skills]
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Skill name
+    validations:
+      required: true
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Real request and observed failure
+      description:
+        Explain what decision the current skill gets wrong or leaves
+        unsupported.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Reproducible evidence
+    validations:
+      required: true

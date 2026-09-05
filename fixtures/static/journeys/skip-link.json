@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "Skip link reaches primary content",
+  "stateLabel": "page-start",
+  "actions": [
+    { "type": "press", "key": "Tab" },
+    { "type": "assertFocus", "target": { "selector": ".skip-link" } },
+    { "type": "press", "key": "Enter" },
+    { "type": "assertFocus", "target": { "selector": "#main" } }
+  ]
+}

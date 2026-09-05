@@ -1,0 +1,6 @@
+packages:
+  - packages/*
+  - fixtures/react
+
+allowBuilds:
+  esbuild: true

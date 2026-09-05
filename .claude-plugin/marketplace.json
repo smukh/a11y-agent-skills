@@ -1,0 +1,15 @@
+{
+  "name": "a11y-agent-skills",
+  "owner": {
+    "name": "a11y-agent-skills contributors"
+  },
+  "plugins": [
+    {
+      "name": "a11y-agent-skills",
+      "source": "..",
+      "description": "Verification-first accessibility engineering skills for coding agents.",
+      "category": "development",
+      "keywords": ["accessibility", "testing", "playwright", "axe-core"]
+    }
+  ]
+}

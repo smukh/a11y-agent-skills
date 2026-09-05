@@ -1,0 +1,25 @@
+{
+  "name": "a11y-agent-skills",
+  "version": "0.1.0",
+  "description": "Find accessibility regressions, fix their source, and verify repairs with deterministic evidence.",
+  "author": {
+    "name": "a11y-agent-skills contributors"
+  },
+  "license": "MIT",
+  "keywords": [
+    "accessibility",
+    "agent-skills",
+    "axe-core",
+    "playwright",
+    "wcag"
+  ],
+  "skills": [
+    "./skills/accessibility-audit",
+    "./skills/fix-accessibility-issue",
+    "./skills/keyboard-navigation-review",
+    "./skills/accessible-forms",
+    "./skills/dialog-accessibility",
+    "./skills/accessible-component-review",
+    "./skills/accessibility-regression-test"
+  ]
+}

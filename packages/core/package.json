@@ -1,0 +1,49 @@
+{
+  "name": "@a11y-agent/core",
+  "version": "0.1.0",
+  "description": "Framework-independent accessibility scanning, evidence normalization, comparison, and verification.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smukh/a11y-agent-skills.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/smukh/a11y-agent-skills#readme",
+  "bugs": {
+    "url": "https://github.com/smukh/a11y-agent-skills/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "axe-core": "4.13.0",
+    "ipaddr.js": "2.5.0",
+    "playwright": "1.58.0",
+    "playwright-core": "1.58.0",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "typescript": "^5.9.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

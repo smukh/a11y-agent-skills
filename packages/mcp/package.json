@@ -1,0 +1,51 @@
+{
+  "name": "@a11y-agent/mcp",
+  "version": "0.1.0",
+  "description": "Bounded MCP adapter for a11y-agent deterministic accessibility evidence.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smukh/a11y-agent-skills.git",
+    "directory": "packages/mcp"
+  },
+  "homepage": "https://github.com/smukh/a11y-agent-skills#readme",
+  "bugs": {
+    "url": "https://github.com/smukh/a11y-agent-skills/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "a11y-agent-mcp": "./dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "bundle": "node ../../scripts/clean-mcp-bundle.mjs && ncc build plugin.cjs -o bundle -e axe-core && node ../../scripts/prune-mcp-bundle.mjs",
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@a11y-agent/core": "workspace:*",
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@vercel/ncc": "^0.38.3",
+    "typescript": "^5.9.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

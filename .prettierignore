@@ -1,0 +1,5 @@
+pnpm-lock.yaml
+packages/github-action/dist
+packages/mcp/bundle
+**/dist-types/**
+evals/results

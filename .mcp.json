@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "a11y-agent": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${PLUGIN_ROOT}/packages/mcp/bundle/index.cjs"],
+      "cwd": "${PLUGIN_ROOT}/"
+    }
+  }
+}

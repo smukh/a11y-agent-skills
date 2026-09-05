@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "Dialog contains focus",
+  "stateLabel": "dialog-open",
+  "actions": [
+    { "type": "click", "target": { "selector": "#open-dialog" } },
+    { "type": "assertFocus", "target": { "selector": "#close-dialog" } },
+    { "type": "press", "key": "Tab" },
+    { "type": "assertFocusWithin", "selector": "#terms-dialog" }
+  ]
+}

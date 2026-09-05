@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "Menu supports arrow keys",
+  "stateLabel": "menu-open",
+  "actions": [
+    { "type": "click", "target": { "selector": "#menu-first" } },
+    { "type": "press", "key": "ArrowDown" },
+    { "type": "assertFocus", "target": { "selector": "#menu-second" } },
+    { "type": "press", "key": "ArrowUp" },
+    { "type": "assertFocus", "target": { "selector": "#menu-first" } }
+  ]
+}

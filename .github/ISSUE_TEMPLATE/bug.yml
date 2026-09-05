@@ -1,0 +1,30 @@
+name: Bug report
+description:
+  Report a reproducible tooling or contract defect without private page content.
+title: "[bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value:
+        Do not paste credentials, storage state, private URLs, or proprietary
+        DOM content.
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed behavior
+      description: Include a minimal public fixture or redacted report.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Package, Node.js, browser, and OS versions
+    validations:
+      required: true

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Broken accessibility evaluation gallery</title>
+    <link rel="stylesheet" href="fixture.css" />
+    <style>
+      *:focus {
+        outline: none;
+      }
+      .low-contrast {
+        color: #aaa;
+        background: #fff;
+      }
+      .motion {
+        animation: pulse 0.4s infinite alternate;
+      }
+      .hover-trigger:focus + .tooltip {
+        display: none;
+      }
+    </style>
+    <script src="gallery-broken.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#missing-main">Skip to content</a>
+    <header><h1>Checkout laboratory</h1></header>
+    <nav><a href="#form">Checkout</a></nav>
+
+    <section class="case" data-case="missing-and-poor-alt-text">
+      <h4>Product image</h4>
+      <img src="product.svg" />
+      <img src="product.svg" alt="image" />
+    </section>
+
+    <section
+      class="case"
+      id="form"
+      data-case="unlabeled-fields invalid-form-errors-not-announced"
+    >
+      <h2>Delivery</h2>
+      <form id="checkout-form">
+        <input id="email" name="email" required />
+        <div id="errors" hidden>Please enter an email address.</div>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <section class="case" data-case="inaccessible-custom-buttons">
+      <h2>Quantity</h2>
+      <div class="fake-button" tabindex="0">Add one</div>
+    </section>
+
+    <section
+      class="case"
+      data-case="dialog-focus-escape missing-focus-restoration"
+    >
+      <h2>Terms dialog</h2>
+      <button id="open-dialog" type="button">Open terms</button>
+      <div
+        id="terms-dialog"
+        class="dialog-panel"
+        role="dialog"
+        aria-labelledby="terms-title"
+        hidden
+      >
+        <h2 id="terms-title">Terms</h2>
+        <button id="close-dialog" type="button">Close terms</button>
+      </div>
+      <button id="outside-dialog" type="button">Outside action</button>
+    </section>
+
+    <section class="case" data-case="invisible-focus illogical-tab-order">
+      <h2>Payment sequence</h2>
+      <button tabindex="5">Pay first visually</button
+      ><button tabindex="1">Pay second visually</button>
+    </section>
+
+    <section class="case" data-case="inaccessible-menu-interaction">
+      <h2>Actions</h2>
+      <div id="actions-menu">
+        <button id="menu-first">Edit</button
+        ><button id="menu-second">Duplicate</button>
+      </div>
+    </section>
+
+    <div class="case" data-case="heading-and-landmark-problems">
+      <h5>Delivery details</h5>
+      <p>No main landmark contains the primary content.</p>
+    </div>
+
+    <section class="case" data-case="status-messages-not-announced">
+      <h2>Save status</h2>
+      <div id="save-status">Saved</div>
+    </section>
+
+    <section class="case" data-case="motion-ignores-reduced-motion">
+      <h2>Offer</h2>
+      <p class="motion">Limited-time offer</p>
+    </section>
+
+    <section class="case" data-case="low-contrast">
+      <h2>Fine print</h2>
+      <p class="low-contrast">Taxes calculated at checkout.</p>
+    </section>
+
+    <section class="case" data-case="inaccessible-hover-only-content">
+      <h2>Shipping help</h2>
+      <span class="hover-trigger">Delivery estimate</span
+      ><span class="tooltip">Two business days</span>
+    </section>
+  </body>
+</html>

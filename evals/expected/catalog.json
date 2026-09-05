@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "brokenPageMustContainRules": [
+    "image-alt",
+    "label",
+    "color-contrast",
+    "heading-order",
+    "landmark-one-main"
+  ],
+  "repairedPageMustNotContainRules": [
+    "image-alt",
+    "label",
+    "color-contrast",
+    "heading-order",
+    "landmark-one-main"
+  ],
+  "journeys": {
+    "dialog-trap": { "broken": "failed", "repaired": "passed" },
+    "dialog-close-restore": { "broken": "failed", "repaired": "passed" },
+    "invalid-form": { "broken": "failed", "repaired": "passed" },
+    "menu-keyboard": { "broken": "failed", "repaired": "passed" },
+    "skip-link": { "broken": "failed", "repaired": "passed" }
+  },
+  "negativeControlsMustHaveNoSeriousOrCriticalFindings": true
+}

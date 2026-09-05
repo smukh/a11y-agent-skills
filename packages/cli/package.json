@@ -1,0 +1,49 @@
+{
+  "name": "@a11y-agent/cli",
+  "version": "0.1.0",
+  "description": "Local-first accessibility evidence CLI for coding agents.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smukh/a11y-agent-skills.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/smukh/a11y-agent-skills#readme",
+  "bugs": {
+    "url": "https://github.com/smukh/a11y-agent-skills/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "a11y-agent": "./bin/a11y-agent.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "bin",
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@a11y-agent/core": "workspace:*",
+    "commander": "14.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "typescript": "^5.9.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

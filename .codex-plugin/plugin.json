@@ -1,0 +1,32 @@
+{
+  "name": "a11y-agent-skills",
+  "version": "0.1.0",
+  "description": "Find accessibility regressions, fix their source, and verify repairs with deterministic evidence.",
+  "author": {
+    "name": "a11y-agent-skills contributors"
+  },
+  "license": "MIT",
+  "keywords": [
+    "accessibility",
+    "agent-skills",
+    "axe-core",
+    "playwright",
+    "wcag"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Accessibility Engineering",
+    "shortDescription": "Find, fix, and verify accessibility regressions",
+    "longDescription": "Seven portable skills backed by deterministic Playwright and axe-core evidence.",
+    "developerName": "a11y-agent-skills contributors",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write", "Browser"],
+    "defaultPrompt": [
+      "Audit this page state for accessibility regressions.",
+      "Fix this accessibility finding and verify the repair.",
+      "Turn this repaired issue into a regression test."
+    ],
+    "brandColor": "#2255AA"
+  }
+}

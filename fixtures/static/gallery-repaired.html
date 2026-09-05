@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Repaired accessibility evaluation gallery</title>
+    <link rel="stylesheet" href="fixture.css" />
+    <style>
+      :focus-visible {
+        outline: 3px solid #075fcc;
+        outline-offset: 3px;
+      }
+      .fine-print {
+        color: #595959;
+        background: #fff;
+      }
+    </style>
+    <script src="gallery-repaired.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header><h1>Checkout laboratory</h1></header>
+    <nav aria-label="Checkout"><a href="#form">Checkout</a></nav>
+    <main id="main" tabindex="-1">
+      <section class="case" data-case="missing-and-poor-alt-text">
+        <h2>Product image</h2>
+        <img
+          src="product.svg"
+          alt="Blue insulated water bottle with loop cap"
+        />
+        <img src="product.svg" alt="" />
+      </section>
+
+      <section
+        class="case"
+        id="form"
+        data-case="unlabeled-fields invalid-form-errors-not-announced"
+      >
+        <h2>Delivery</h2>
+        <form id="checkout-form" novalidate>
+          <label for="email">Email address</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            aria-describedby="email-error"
+          />
+          <div id="errors" role="alert" tabindex="-1" hidden>
+            <a href="#email">Correct the email address.</a>
+          </div>
+          <p id="email-error" hidden>Enter a valid email address.</p>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+
+      <section class="case" data-case="inaccessible-custom-buttons">
+        <h2>Quantity</h2>
+        <button type="button">Add one</button>
+      </section>
+
+      <section
+        class="case"
+        data-case="dialog-focus-escape missing-focus-restoration"
+      >
+        <h2>Terms dialog</h2>
+        <button id="open-dialog" type="button">Open terms</button>
+        <dialog id="terms-dialog" aria-labelledby="terms-title">
+          <h2 id="terms-title">Terms</h2>
+          <button id="close-dialog" type="button" autofocus>Close terms</button>
+          <button type="button">Accept terms</button>
+        </dialog>
+        <button id="outside-dialog" type="button">Outside action</button>
+      </section>
+
+      <section class="case" data-case="invisible-focus illogical-tab-order">
+        <h2>Payment sequence</h2>
+        <button>Pay first visually</button><button>Pay second visually</button>
+      </section>
+
+      <section class="case" data-case="inaccessible-menu-interaction">
+        <h2>Actions</h2>
+        <div
+          id="actions-menu"
+          class="menu"
+          role="menu"
+          aria-label="Item actions"
+        >
+          <button id="menu-first" role="menuitem" tabindex="0">Edit</button>
+          <button id="menu-second" role="menuitem" tabindex="-1">
+            Duplicate
+          </button>
+        </div>
+      </section>
+
+      <section class="case" data-case="heading-and-landmark-problems">
+        <h2>Delivery details</h2>
+        <p>The primary content is in a named structure.</p>
+      </section>
+
+      <section class="case" data-case="status-messages-not-announced">
+        <h2>Save status</h2>
+        <div id="save-status" role="status">Saved</div>
+      </section>
+
+      <section class="case" data-case="motion-ignores-reduced-motion">
+        <h2>Offer</h2>
+        <p class="motion repaired-motion">Limited-time offer</p>
+      </section>
+
+      <section class="case" data-case="low-contrast">
+        <h2>Fine print</h2>
+        <p class="fine-print">Taxes calculated at checkout.</p>
+      </section>
+
+      <section class="case" data-case="inaccessible-hover-only-content">
+        <h2>Shipping help</h2>
+        <button class="hover-trigger" aria-describedby="delivery-tip">
+          Delivery estimate</button
+        ><span class="tooltip" role="tooltip" id="delivery-tip"
+          >Two business days</span
+        >
+      </section>
+    </main>
+  </body>
+</html>

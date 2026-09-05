@@ -1,0 +1,15 @@
+{
+  "name": "a11y-agent-skills",
+  "description": "Portable accessibility engineering skills sharing the canonical top-level skills directory.",
+  "owner": {
+    "name": "a11y-agent-skills contributors"
+  },
+  "plugins": [
+    {
+      "name": "a11y-agent-skills",
+      "source": "./",
+      "description": "Find the regression, fix the source, prove the repair.",
+      "category": "developer-tools"
+    }
+  ]
+}

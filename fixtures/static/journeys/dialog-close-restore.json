@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "Dialog closes and restores focus",
+  "stateLabel": "dialog-open-close",
+  "actions": [
+    { "type": "click", "target": { "selector": "#open-dialog" } },
+    { "type": "assertFocus", "target": { "selector": "#close-dialog" } },
+    { "type": "press", "key": "Escape" },
+    {
+      "type": "assertVisible",
+      "target": { "selector": "#terms-dialog" },
+      "visible": false
+    },
+    { "type": "assertFocusReturned", "target": { "selector": "#open-dialog" } }
+  ]
+}

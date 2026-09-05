@@ -1,0 +1,47 @@
+:root {
+  color: #202124;
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+}
+body {
+  margin: 0;
+}
+.shell {
+  margin: 0 auto;
+  max-width: 52rem;
+  padding: 1.5rem;
+}
+.gallery {
+  display: grid;
+  gap: 1rem;
+}
+.card {
+  border: 1px solid #b8bec8;
+  padding: 1rem;
+}
+.card img {
+  display: block;
+  height: 180px;
+  width: 180px;
+}
+.card input,
+.card button {
+  display: block;
+  margin-block: 0.75rem;
+}
+.low-contrast {
+  background: #888;
+  color: #777;
+}
+.skip-link {
+  left: 0.5rem;
+  position: absolute;
+  top: -5rem;
+}
+.skip-link:focus {
+  background: #fff;
+  color: #0645ad;
+  padding: 0.5rem;
+  top: 0.5rem;
+}

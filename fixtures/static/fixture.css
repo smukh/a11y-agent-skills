@@ -1,0 +1,72 @@
+:root {
+  color-scheme: light;
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+}
+body {
+  margin: 0 auto;
+  max-width: 68rem;
+  padding: 1rem;
+}
+nav a,
+button,
+input {
+  margin: 0.25rem;
+}
+.case {
+  border-block-start: 1px solid #bbb;
+  margin-block: 1.5rem;
+  padding-block: 1rem;
+}
+.skip-link {
+  background: white;
+  color: #0645ad;
+  left: 0.5rem;
+  padding: 0.5rem;
+  position: absolute;
+  top: -5rem;
+}
+.skip-link:focus {
+  top: 0.5rem;
+}
+.dialog-panel {
+  background: white;
+  border: 2px solid #222;
+  inset: 15% 25%;
+  padding: 1rem;
+  position: fixed;
+  z-index: 2;
+}
+.menu [role="menuitem"] {
+  display: block;
+}
+.tooltip {
+  display: none;
+}
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.hover-trigger:hover + .tooltip,
+.hover-trigger:focus + .tooltip {
+  display: block;
+}
+@media (prefers-reduced-motion: reduce) {
+  .repaired-motion {
+    animation: none !important;
+  }
+}
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}

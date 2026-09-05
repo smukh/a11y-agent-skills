@@ -1,0 +1,3 @@
+packages/github-action/dist/** linguist-generated=true -diff
+packages/mcp/bundle/** linguist-generated=true -diff
+packages/mcp/bundle/node_modules/axe-core/** linguist-vendored=true -diff

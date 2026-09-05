@@ -1,0 +1,36 @@
+name: Skill security
+
+on:
+  pull_request:
+    paths:
+      - "skills/**"
+      - ".github/workflows/skill-security.yml"
+  push:
+    branches: [main]
+    paths:
+      - "skills/**"
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+      - run: pip install cisco-ai-skill-scanner==2.0.14
+      - name: Run local non-LLM analyzers
+        run: >-
+          skill-scanner scan-all skills --recursive --use-behavioral
+          --fail-on-severity high --format sarif --output skill-security.sarif
+      - uses: github/codeql-action/upload-sarif@5ba2889ada762081db2c4f32a729827dce632c7b # v3
+        if: always()
+        with:
+          sarif_file: skill-security.sarif

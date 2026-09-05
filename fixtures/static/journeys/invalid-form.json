@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "Invalid form exposes its error",
+  "stateLabel": "checkout-invalid",
+  "actions": [
+    { "type": "click", "target": { "role": "button", "name": "Submit" } },
+    { "type": "assertVisible", "target": { "role": "alert" }, "visible": true },
+    { "type": "assertFocus", "target": { "selector": "#errors" } },
+    {
+      "type": "assertAccessibleName",
+      "target": { "selector": "#email" },
+      "name": "Email address"
+    }
+  ]
+}

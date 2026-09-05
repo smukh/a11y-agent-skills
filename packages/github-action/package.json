@@ -1,0 +1,46 @@
+{
+  "name": "@a11y-agent/github-action",
+  "version": "0.1.0",
+  "description": "GitHub Action adapter for a11y-agent accessibility evidence and explicit regression thresholds.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smukh/a11y-agent-skills.git",
+    "directory": "packages/github-action"
+  },
+  "homepage": "https://github.com/smukh/a11y-agent-skills#readme",
+  "bugs": {
+    "url": "https://github.com/smukh/a11y-agent-skills/issues"
+  },
+  "private": false,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "action.yml",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -b && pnpm bundle",
+    "bundle": "ncc build src/index.ts -o dist --minify && node ../../scripts/prune-action-dist.mjs",
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@a11y-agent/core": "workspace:*",
+    "@actions/artifact": "6.2.1",
+    "@actions/core": "3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@vercel/ncc": "^0.38.3",
+    "typescript": "^5.9.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

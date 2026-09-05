@@ -1,0 +1,395 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureRevision": "gallery-1",
+  "cases": [
+    {
+      "id": "missing-and-poor-alt-text",
+      "title": "Missing and poor image alternatives",
+      "userImpact": "A non-visual user may miss the product image or receive an unhelpful generic description.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html"
+      ],
+      "deterministicRulesExpected": ["image-alt"],
+      "behaviorAssertionsExpected": [],
+      "manualReviewItems": [
+        "Confirm the product description is accurate and the second image is truly decorative."
+      ],
+      "allowedFixes": [
+        "Add an owner-supported meaningful alternative.",
+        "Use empty alt only for a genuinely decorative image."
+      ],
+      "prohibitedFixes": [
+        "Fabricate an alternative from the file name.",
+        "Hide an informative image from assistive technology."
+      ],
+      "regressionRisks": [
+        "Alternative becomes stale when product imagery changes."
+      ],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='missing-and-poor-alt-text']"
+      }
+    },
+    {
+      "id": "unlabeled-fields",
+      "title": "Unlabeled form field",
+      "userImpact": "A user may not know which value the input expects.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html"
+      ],
+      "deterministicRulesExpected": ["label"],
+      "behaviorAssertionsExpected": [
+        "The email field exposes the visible label Email address."
+      ],
+      "manualReviewItems": [
+        "Confirm the label wording matches product intent."
+      ],
+      "allowedFixes": ["Associate a visible label with the input."],
+      "prohibitedFixes": [
+        "Use placeholder text as the only label.",
+        "Invent a label without product context."
+      ],
+      "regressionRisks": ["Generated IDs break the label association."],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='unlabeled-fields']"
+      }
+    },
+    {
+      "id": "invalid-form-errors-not-announced",
+      "title": "Invalid form error is not exposed",
+      "userImpact": "A user may not discover why submission failed or which field needs correction.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
+        "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+      ],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "Invalid submission exposes an alert.",
+        "Focus moves to the error summary.",
+        "The field is marked invalid and connected to its error."
+      ],
+      "manualReviewItems": [
+        "Assess whether the recovery instructions are clear."
+      ],
+      "allowedFixes": [
+        "Expose and focus a concise error summary.",
+        "Associate field error text and invalid state."
+      ],
+      "prohibitedFixes": [
+        "Disable validation.",
+        "Show error color without text or programmatic state."
+      ],
+      "regressionRisks": [
+        "Duplicate live announcements.",
+        "Stale invalid state after correction."
+      ],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='invalid-form-errors-not-announced']"
+      }
+    },
+    {
+      "id": "inaccessible-custom-buttons",
+      "title": "Custom control lacks button behavior",
+      "userImpact": "Keyboard and assistive-technology users cannot reliably invoke the action.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html",
+        "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+      ],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "The action is a native button and responds to standard keyboard input."
+      ],
+      "manualReviewItems": ["Confirm action naming and state feedback."],
+      "allowedFixes": ["Replace the simulated control with a native button."],
+      "prohibitedFixes": [
+        "Add only role=button without keyboard behavior.",
+        "Remove the action."
+      ],
+      "regressionRisks": ["CSS assumes a div selector."],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='inaccessible-custom-buttons']"
+      }
+    },
+    {
+      "id": "dialog-focus-escape",
+      "title": "Modal dialog lets focus escape",
+      "userImpact": "A keyboard user can operate obscured background controls and lose dialog context.",
+      "standards": ["https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "Tab and Shift+Tab remain in the open modal."
+      ],
+      "manualReviewItems": [
+        "Assess initial focus choice at zoom and mobile widths."
+      ],
+      "allowedFixes": [
+        "Use native modal dialog behavior.",
+        "Implement tested containment for a necessary custom dialog."
+      ],
+      "prohibitedFixes": [
+        "Set aria-modal without making the background inert.",
+        "Remove keyboard focus from dialog controls."
+      ],
+      "regressionRisks": ["Nested overlays break containment."],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='dialog-focus-escape']"
+      }
+    },
+    {
+      "id": "missing-focus-restoration",
+      "title": "Dialog close loses the invoker",
+      "userImpact": "After closing, a keyboard user must rediscover their former location.",
+      "standards": ["https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "Escape closes the dialog and returns focus to its invoker."
+      ],
+      "manualReviewItems": [
+        "Choose a logical successor if the invoker is removed."
+      ],
+      "allowedFixes": ["Restore focus to the invoker on close."],
+      "prohibitedFixes": ["Always move focus to the document body."],
+      "regressionRisks": ["Invoker unmounts before close."],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='missing-focus-restoration']"
+      }
+    },
+    {
+      "id": "invisible-focus",
+      "title": "Focus indicator is removed",
+      "userImpact": "Sighted keyboard users cannot locate the active control.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"
+      ],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "Keyboard focus has a visible, high-contrast indicator."
+      ],
+      "manualReviewItems": [
+        "Inspect focus on every background and in forced-colors mode."
+      ],
+      "allowedFixes": ["Add a robust :focus-visible style."],
+      "prohibitedFixes": ["Remove outlines without an equivalent indicator."],
+      "regressionRisks": ["Component styles override the shared focus token."],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='invisible-focus']"
+      }
+    },
+    {
+      "id": "illogical-tab-order",
+      "title": "Positive tabindex changes task order",
+      "userImpact": "Keyboard focus moves in an order that does not match the interface.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html"
+      ],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "Tab order follows the logical source and visual sequence."
+      ],
+      "manualReviewItems": ["Judge the sequence against the actual user task."],
+      "allowedFixes": [
+        "Align source order and remove positive tabindex values."
+      ],
+      "prohibitedFixes": [
+        "Set a larger collection of positive tabindex values."
+      ],
+      "regressionRisks": ["Responsive reordering diverges from DOM order."],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='illogical-tab-order']"
+      }
+    },
+    {
+      "id": "inaccessible-menu-interaction",
+      "title": "Menu does not implement its keyboard model",
+      "userImpact": "Keyboard users cannot move efficiently among composite widget items.",
+      "standards": ["https://www.w3.org/WAI/ARIA/apg/patterns/menubar/"],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "Arrow keys move focus and roving tabindex maintains one tab stop."
+      ],
+      "manualReviewItems": [
+        "Confirm a menu, rather than ordinary buttons, is the correct pattern."
+      ],
+      "allowedFixes": [
+        "Use ordinary buttons if no composite is needed.",
+        "Implement the established menu keyboard model."
+      ],
+      "prohibitedFixes": ["Add menu roles without arrow-key behavior."],
+      "regressionRisks": ["Dynamic items invalidate the focused index."],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='inaccessible-menu-interaction']"
+      }
+    },
+    {
+      "id": "heading-and-landmark-problems",
+      "title": "Heading hierarchy and primary landmark are missing",
+      "userImpact": "Structural navigation and page scanning become harder.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html",
+        "https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html"
+      ],
+      "deterministicRulesExpected": ["heading-order", "landmark-one-main"],
+      "behaviorAssertionsExpected": [
+        "The skip link reaches the main landmark."
+      ],
+      "manualReviewItems": ["Confirm headings accurately describe sections."],
+      "allowedFixes": [
+        "Use a coherent heading outline and one primary main landmark."
+      ],
+      "prohibitedFixes": ["Choose heading levels for font size alone."],
+      "regressionRisks": ["Nested layouts introduce multiple main landmarks."],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='heading-and-landmark-problems']"
+      }
+    },
+    {
+      "id": "status-messages-not-announced",
+      "title": "Dynamic status is not announced",
+      "userImpact": "A screen-reader user may not know that a save completed.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+      ],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "The status container exposes an appropriate live status role before its text changes."
+      ],
+      "manualReviewItems": [
+        "Check announcement timing and duplication with a screen reader."
+      ],
+      "allowedFixes": [
+        "Use a stable role=status container for non-urgent updates."
+      ],
+      "prohibitedFixes": [
+        "Move focus for every passive save update.",
+        "Use assertive alerts for routine status."
+      ],
+      "regressionRisks": ["Container is mounted only after the text update."],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='status-messages-not-announced']"
+      }
+    },
+    {
+      "id": "motion-ignores-reduced-motion",
+      "title": "Animation ignores reduced-motion preference",
+      "userImpact": "Persistent movement can cause discomfort or impede task completion.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html"
+      ],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "Non-essential animation is disabled under prefers-reduced-motion: reduce."
+      ],
+      "manualReviewItems": [
+        "Determine whether any remaining motion is essential."
+      ],
+      "allowedFixes": [
+        "Disable or reduce non-essential motion for the preference."
+      ],
+      "prohibitedFixes": [
+        "Remove essential status information with the animation."
+      ],
+      "regressionRisks": ["New animation class bypasses the preference rule."],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='motion-ignores-reduced-motion']"
+      }
+    },
+    {
+      "id": "low-contrast",
+      "title": "Text contrast is insufficient",
+      "userImpact": "People with low vision may not be able to read important information.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+      ],
+      "deterministicRulesExpected": ["color-contrast"],
+      "behaviorAssertionsExpected": [],
+      "manualReviewItems": [
+        "Check text over all dynamic backgrounds and forced-colors behavior."
+      ],
+      "allowedFixes": [
+        "Adjust the foreground or background while retaining information and hierarchy."
+      ],
+      "prohibitedFixes": [
+        "Hide low-contrast content.",
+        "Increase font weight without verifying the actual ratio."
+      ],
+      "regressionRisks": ["Theme tokens reintroduce the failing color pair."],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='low-contrast']"
+      }
+    },
+    {
+      "id": "inaccessible-hover-only-content",
+      "title": "Help content appears only on pointer hover",
+      "userImpact": "Keyboard, touch, and magnification users may not discover or keep help visible.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html"
+      ],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "The trigger is keyboard focusable and exposes the same help on focus."
+      ],
+      "manualReviewItems": [
+        "Verify dismissibility, hoverability, persistence, zoom, and touch behavior."
+      ],
+      "allowedFixes": [
+        "Use a focusable trigger and associate a persistent tooltip or disclosure."
+      ],
+      "prohibitedFixes": [
+        "Make the help permanently invisible to assistive technology."
+      ],
+      "regressionRisks": ["Pointer and focus event timing diverge."],
+      "fixture": {
+        "broken": "gallery-broken.html",
+        "repaired": "gallery-repaired.html",
+        "selector": "[data-case~='inaccessible-hover-only-content']"
+      }
+    }
+  ],
+  "negativeControls": [
+    {
+      "id": "icon-button-with-hidden-text",
+      "fixture": "negative-controls.html",
+      "protectedBehavior": "A native button obtains its name from visually hidden text; redundant aria-label is unnecessary."
+    },
+    {
+      "id": "decorative-empty-alt",
+      "fixture": "negative-controls.html",
+      "protectedBehavior": "A decorative image intentionally uses empty alt and must not receive fabricated prose."
+    },
+    {
+      "id": "readonly-not-disabled",
+      "fixture": "negative-controls.html",
+      "protectedBehavior": "A read-only value remains focusable and available for copying."
+    },
+    {
+      "id": "native-details",
+      "fixture": "negative-controls.html",
+      "protectedBehavior": "A native details element provides disclosure behavior without redundant ARIA."
+    }
+  ]
+}
