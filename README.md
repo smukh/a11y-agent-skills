@@ -1,6 +1,7 @@
 # a11y-agent-skills
 
 > Find the regression, fix the source, prove the repair.
+<img width="1672" height="941" alt="rclaudeskills0609" src="https://github.com/user-attachments/assets/c0d9a68b-63de-49e8-9c4a-84775dc57d2d" />
 
 An open-source accessibility quality layer for teams building interfaces with
 AI. Seven portable Agent Skills guide coding agents through reproducible
