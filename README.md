@@ -10,8 +10,25 @@ deterministic core; React is the first tested framework fixture.
 
 ## One complete workflow
 
-Building from source requires Node.js 22.13+ and pnpm 11.19. Published core,
-CLI, and MCP packages support Node.js 20+. From a clone:
+Published core, CLI, and MCP packages support Node.js 20+. Run the CLI without
+cloning the repository:
+
+```bash
+npx --yes playwright@1.58.0 install chromium
+npx --yes @a11y-agent/cli doctor
+npx --yes @a11y-agent/cli scan https://example.com
+```
+
+To keep the command available locally, use
+`npm install --global @a11y-agent/cli` and run `a11y-agent doctor`.
+
+For an MCP host, launch the stdio server with:
+
+```bash
+npx --yes @a11y-agent/mcp
+```
+
+Building from source requires Node.js 22.13+ and pnpm 11.19. From a clone:
 
 ```bash
 pnpm install
