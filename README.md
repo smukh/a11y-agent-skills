@@ -1,7 +1,21 @@
 # a11y-agent-skills
 
+<p>
+  <a href="https://github.com/smukh/a11y-agent-skills/tree/main/skills"><img alt="Skills: 7" src="https://img.shields.io/badge/skills-7-1f6feb"></a>
+  <a href="https://agentskills.io/specification"><img alt="Format: Agent Skills" src="https://img.shields.io/badge/format-Agent%20Skills-6f42c1"></a>
+  <a href="https://www.npmjs.com/package/@a11y-agent/core"><img alt="npm version" src="https://img.shields.io/npm/v/@a11y-agent/core?label=npm"></a>
+  <a href="https://github.com/smukh/a11y-agent-skills/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/smukh/a11y-agent-skills"></a>
+  <a href="https://github.com/smukh/a11y-agent-skills/actions/workflows/ci.yml"><img alt="CI status" src="https://img.shields.io/github/actions/workflow/status/smukh/a11y-agent-skills/ci.yml?branch=main&amp;label=CI"></a>
+  <a href="https://github.com/smukh/a11y-agent-skills/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/smukh/a11y-agent-skills?style=flat&amp;logo=github"></a>
+</p>
+
+<p>
+  <a href="https://webafterai.substack.com/"><img alt="Subscribe to Web After AI" src="https://img.shields.io/badge/Subscribe-Web%20After%20AI-f65a23?logo=substack&amp;logoColor=white"></a>
+</p>
+
 > Find the regression, fix the source, prove the repair.
-<img width="1672" height="941" alt="rclaudeskills0609" src="https://github.com/user-attachments/assets/c0d9a68b-63de-49e8-9c4a-84775dc57d2d" />
+
+![Diagram showing the a11y-agent-skills audit, repair, verification, and regression-test workflow](https://github.com/user-attachments/assets/c0d9a68b-63de-49e8-9c4a-84775dc57d2d)
 
 An open-source accessibility quality layer for teams building interfaces with
 AI. Seven portable Agent Skills guide coding agents through reproducible
@@ -89,9 +103,6 @@ Install directly from GitHub:
 npx skills@1.5.9 add smukh/a11y-agent-skills --agent codex --yes
 ```
 
-Release acceptance covers the local form. The remote shorthand has also been
-tested from an anonymous environment against the public repository.
-
 - **Codex:** install the repository as a plugin, or copy `skills/*` into
   `~/.agents/skills/`.
 - **Claude Code:** run `/plugin marketplace add smukh/a11y-agent-skills`, then
@@ -102,8 +113,7 @@ tested from an anonymous environment against the public repository.
 - **Generic Agent Skills hosts:** point the host at `skills/`, following the
   [Agent Skills specification](https://agentskills.io/specification).
 
-No host-specific copy of a skill is maintained. `.codex-plugin` and
-`.claude-plugin` metadata point to the same source tree.
+All supported hosts use the same canonical skill files.
 
 ## CLI
 
@@ -162,7 +172,6 @@ which is ignored unless a team deliberately force-adds a reviewed baseline.
 - [Security and privacy](docs/SECURITY.md)
 - [Standards boundary](docs/STANDARDS.md)
 - [Public evaluations](docs/EVALUATION.md)
-- [Competitive landscape](docs/COMPETITIVE-LANDSCAPE.md)
 - [Contributing](CONTRIBUTING.md) and
   [third-party notices](THIRD_PARTY_NOTICES.md)
 
