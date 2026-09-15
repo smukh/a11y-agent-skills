@@ -30,3 +30,9 @@ pages. State the expected engine rules separately from behavioral/manual
 assertions. Add a negative control when an overly broad repair is plausible. Run
 the broken state twice to check fingerprint stability, then verify the repaired
 state and the scorer.
+
+## Specialist workflows
+
+See [the specialist evaluation guide](SPECIALIST-EVALUATION.md) for the five
+additional case families, agent prompts, deterministic behavioral coverage, and
+manual review boundaries.

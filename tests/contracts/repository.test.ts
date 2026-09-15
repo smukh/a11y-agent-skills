@@ -9,7 +9,12 @@ const expectedSkills = [
   "accessible-forms",
   "dialog-accessibility",
   "accessible-component-review",
-  "accessibility-regression-test"
+  "accessibility-regression-test",
+  "accessible-authentication",
+  "accessible-data-tables-and-grids",
+  "accessible-dynamic-updates",
+  "accessible-combobox-and-autocomplete",
+  "accessible-charts-and-dashboards"
 ].sort();
 
 async function json(path: string): Promise<Record<string, unknown>> {
@@ -35,7 +40,7 @@ async function filesUnder(root: string): Promise<string[]> {
 }
 
 describe("repository contracts", () => {
-  it("discovers exactly the seven canonical skills", async () => {
+  it("discovers exactly the twelve canonical skills", async () => {
     const skills = (await readdir(resolve("skills"), { withFileTypes: true }))
       .filter((entry) => entry.isDirectory())
       .map((entry) => entry.name)
@@ -60,7 +65,7 @@ describe("repository contracts", () => {
       json("fixtures/react/package.json")
     ]);
     expect(new Set(manifests.map((manifest) => manifest.version))).toEqual(
-      new Set(["0.1.0"])
+      new Set(["0.2.0"])
     );
   });
 

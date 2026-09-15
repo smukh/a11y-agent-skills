@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Specialist negative controls</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Valid native patterns</h1>
+      <section data-case="native-auth">
+        <h2>Credential entry</h2>
+        <label for="password">Password</label
+        ><input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+        /><label for="code">Verification code</label
+        ><input id="code" inputmode="numeric" autocomplete="one-time-code" />
+      </section>
+      <section data-case="native-table">
+        <h2>Inventory</h2>
+        <table>
+          <caption>
+            Stock counts
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Apples</th>
+              <td>2</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section data-case="native-select">
+        <h2>Region</h2>
+        <label for="region">Region</label
+        ><select id="region">
+          <option>North</option>
+          <option>South</option>
+        </select>
+      </section>
+      <section data-case="ordinary-content">
+        <h2>Details</h2>
+        <details>
+          <summary>Delivery information</summary>
+          <p>Delivery takes two working days.</p>
+        </details>
+      </section>
+      <section data-case="static-chart">
+        <h2>Sales</h2>
+        <p>Apples sold twice as many units as Pears.</p>
+        <table>
+          <caption>
+            Sales in units
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Units</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Apples</th>
+              <td>20</td>
+            </tr>
+            <tr>
+              <th scope="row">Pears</th>
+              <td>10</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

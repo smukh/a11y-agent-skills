@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>City search — repaired fixture</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="combobox.js" defer></script>
+  </head>
+  <body data-mode="repaired">
+    <main id="main">
+      <h1>City search</h1>
+      <p>Local test fixture using synthetic data. Variant: repaired.</p>
+      <section data-case="combobox">
+        <label for="city">City</label>
+        <p id="city-help">
+          Type to search. Use Down and Up to choose a suggestion, Enter to
+          select, and Escape to dismiss.
+        </p>
+        <input
+          id="city"
+          role="combobox"
+          aria-autocomplete="list"
+          aria-expanded="false"
+          aria-controls="cities"
+          aria-describedby="city-help"
+          autocomplete="off"
+        />
+        <ul
+          id="cities"
+          role="listbox"
+          aria-label="City suggestions"
+          hidden
+        ></ul>
+        <p id="city-status" role="status"></p>
+        <p>Selected city: <span id="selection">None</span></p>
+        <button id="after-city">Continue</button>
+      </section>
+    </main>
+  </body>
+</html>

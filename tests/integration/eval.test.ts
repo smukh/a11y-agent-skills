@@ -61,11 +61,16 @@ describe("evaluation runner", () => {
       { cwd: resolve(".") }
     );
     const result = JSON.parse(await readFile(outputPath, "utf8")) as {
+      runnerVersion: string;
       score: number;
       maxScore: number;
       publishable: boolean;
       checks: Array<{ id: string; passed: boolean }>;
     };
+    const manifest = JSON.parse(
+      await readFile(resolve("package.json"), "utf8")
+    ) as { version: string };
+    expect(result.runnerVersion).toBe(manifest.version);
     expect(result.score).toBe(result.maxScore);
     expect(result.publishable).toBe(false);
     expect(

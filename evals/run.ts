@@ -179,7 +179,7 @@ const result = {
   caseId: selected.id,
   fixtureRevision: catalog.fixtureRevision,
   model: options.model,
-  runnerVersion: "0.1.0",
+  runnerVersion: "0.2.0",
   inputs: {
     beforeRunId: before.runId,
     afterRunId: after.runId,

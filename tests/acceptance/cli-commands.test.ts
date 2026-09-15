@@ -12,6 +12,8 @@ import {
 } from "../../packages/core/src/index.js";
 import { startFixtureServer } from "../helpers/fixture-server.js";
 
+import { makeFinding, makeReport } from "../helpers/report.js";
+
 const execute = promisify(execFile);
 const cli = process.env.A11Y_AGENT_CLI_ENTRY
   ? resolve(process.env.A11Y_AGENT_CLI_ENTRY)
@@ -42,6 +44,33 @@ afterAll(async () => {
 });
 
 describe("CLI command acceptance", () => {
+  it("runs doctor and compares reports through the CLI without a browser", async () => {
+    const doctor = await runCli(["doctor"]);
+    expect((JSON.parse(doctor.stdout) as { ok: boolean }).ok).toBe(true);
+    const beforePath = join(temporaryDirectory, "nonbrowser-before.json");
+    const afterPath = join(temporaryDirectory, "nonbrowser-after.json");
+    await writeFile(beforePath, JSON.stringify(makeReport([makeFinding()])));
+    await writeFile(afterPath, JSON.stringify(makeReport([])));
+    const result = await runCli([
+      "compare",
+      beforePath,
+      afterPath,
+      "--format",
+      "json"
+    ]);
+    const comparison = comparisonReportSchema.parse(
+      JSON.parse(result.stdout) as unknown
+    );
+    expect(comparison.resolved).toHaveLength(1);
+    expect(comparison.new).toHaveLength(0);
+  });
+
+  it("reports the release version from the installed CLI", async () => {
+    const manifest = JSON.parse(
+      await readFile(resolve("package.json"), "utf8")
+    ) as { version: string };
+    expect((await runCli(["--version"])).stdout.trim()).toBe(manifest.version);
+  });
   it("runs doctor, scan, compare, verify, keyboard, and output-file paths as subprocesses", async () => {
     if (!server) throw new Error("Fixture server did not start.");
 

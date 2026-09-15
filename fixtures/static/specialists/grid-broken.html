@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inventory editor — broken fixture</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="grid.js" defer></script>
+  </head>
+  <body data-mode="broken">
+    <main id="main">
+      <h1>Inventory editor</h1>
+      <p>Local test fixture using synthetic data. Variant: broken.</p>
+      <section data-case="grid">
+        <p id="grid-help">
+          Use arrows to move between cells. Enter edits quantity; Enter saves;
+          Escape cancels. Rows sort by quantity after saving.
+        </p>
+        <table role="grid" aria-label="Inventory" aria-describedby="grid-help">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col" aria-sort="ascending">Quantity</th>
+            </tr>
+          </thead>
+          <tbody id="inventory"></tbody>
+        </table>
+        <p id="grid-status" role="status"></p>
+        <button id="after-grid">Continue</button>
+      </section>
+    </main>
+  </body>
+</html>

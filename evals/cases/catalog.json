@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "fixtureRevision": "gallery-1",
+  "fixtureRevision": "gallery-2",
   "cases": [
     {
       "id": "missing-and-poor-alt-text",
@@ -368,6 +368,163 @@
         "repaired": "gallery-repaired.html",
         "selector": "[data-case~='inaccessible-hover-only-content']"
       }
+    },
+    {
+      "id": "specialist-authentication",
+      "title": "Whole-code paste loses digits",
+      "skill": "accessible-authentication",
+      "userImpact": "A person using clipboard assistance cannot complete the OTP challenge without transcription.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html"
+      ],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "Pasting 012345 fills all six positions and Verify code succeeds.",
+        "Invalid and expired codes can be corrected or resent without losing leading zeroes."
+      ],
+      "manualReviewItems": [
+        "Test real screen-reader error discovery and supported password-manager/mobile autofill."
+      ],
+      "allowedFixes": [
+        "Distribute a complete pasted code or use a native whole-code input while preserving the challenge."
+      ],
+      "prohibitedFixes": [
+        "Remove MFA or code validation.",
+        "Treat fill() as proof of clipboard support."
+      ],
+      "regressionRisks": ["A code beginning with zero is parsed as a number."],
+      "fixture": {
+        "broken": "specialists/authentication-broken.html",
+        "repaired": "specialists/authentication-repaired.html",
+        "selector": "[data-case=\"authentication\"]"
+      }
+    },
+    {
+      "id": "specialist-grid",
+      "title": "Grid editing loses record identity after sorting",
+      "skill": "accessible-data-tables-and-grids",
+      "userImpact": "A keyboard user can unknowingly continue editing the wrong product after saving.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html",
+        "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html"
+      ],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "Save Apples quantity as 5; the reordered grid keeps focus on Apples quantity.",
+        "Arrow navigation, cancelled edits, and Tab exit remain usable."
+      ],
+      "manualReviewItems": [
+        "Check spoken row/column context with the supported screen reader."
+      ],
+      "allowedFixes": [
+        "Restore focus by record and column identity after sorting."
+      ],
+      "prohibitedFixes": [
+        "Disable sorting or editing.",
+        "Make every cell an independent tab stop."
+      ],
+      "regressionRisks": ["Row indices are mistaken for record identities."],
+      "fixture": {
+        "broken": "specialists/grid-broken.html",
+        "repaired": "specialists/grid-repaired.html",
+        "selector": "[data-case=\"grid\"]"
+      }
+    },
+    {
+      "id": "specialist-dynamic",
+      "title": "Streaming response uses interrupting live exposure",
+      "skill": "accessible-dynamic-updates",
+      "userImpact": "A screen-reader user may be interrupted repeatedly as partial response text arrives.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+      ],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "Response content remains navigable and routine tokens are not exposed through an assertive live ancestor.",
+        "Focus remains on the initiating control and completion status is exposed.",
+        "Stop, failure, and retry invalidate obsolete callbacks."
+      ],
+      "manualReviewItems": [
+        "Listen for actual timing, duplication and interruption; DOM exposure is not speech evidence."
+      ],
+      "allowedFixes": [
+        "Separate useful status feedback from token-by-token content while retaining stop and retry."
+      ],
+      "prohibitedFixes": [
+        "Hide the response from assistive technology.",
+        "Remove response streaming or move focus for every token."
+      ],
+      "regressionRisks": [
+        "Cancelled work announces completion or overwrites a later response."
+      ],
+      "fixture": {
+        "broken": "specialists/dynamic-broken.html",
+        "repaired": "specialists/dynamic-repaired.html",
+        "selector": "[data-case=\"dynamic\"]"
+      }
+    },
+    {
+      "id": "specialist-combobox",
+      "title": "Obsolete suggestions replace current query results",
+      "skill": "accessible-combobox-and-autocomplete",
+      "userImpact": "A user can select a city that no longer matches their query or lose the active option.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
+        "https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html"
+      ],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "Complete lo before l: current options and active reference still identify the lo results.",
+        "Enter commits London after the obsolete l response.",
+        "Empty/error/retry, text editing, Escape, and Tab remain usable."
+      ],
+      "manualReviewItems": [
+        "Check active-option speech, mobile interaction, and IME composition."
+      ],
+      "allowedFixes": [
+        "Ignore superseded responses and keep active option state consistent with current results."
+      ],
+      "prohibitedFixes": [
+        "Remove autocomplete or keyboard selection.",
+        "Use a debounce as the only response-order protection."
+      ],
+      "regressionRisks": ["An old response reopens a dismissed popup."],
+      "fixture": {
+        "broken": "specialists/combobox-broken.html",
+        "repaired": "specialists/combobox-repaired.html",
+        "selector": "[data-case=\"combobox\"]"
+      }
+    },
+    {
+      "id": "specialist-charts",
+      "title": "Chart filter leaves detailed data stale",
+      "skill": "accessible-charts-and-dashboards",
+      "userImpact": "A nonvisual reader receives different sales figures from those shown visually.",
+      "standards": [
+        "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html",
+        "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html"
+      ],
+      "deterministicRulesExpected": [],
+      "behaviorAssertionsExpected": [
+        "Q2 chart and detailed table both expose Apples 30 and Pears 0 units.",
+        "Empty selection removes old values; Q1 reset restores matching values and context."
+      ],
+      "manualReviewItems": [
+        "Confirm descriptions preserve meaning and test chart discovery, filtering and exact-value retrieval with AT."
+      ],
+      "allowedFixes": [
+        "Render chart and table from the same filtered dataset."
+      ],
+      "prohibitedFixes": [
+        "Hide the data table.",
+        "Fabricate a trend or replace a missing value with zero."
+      ],
+      "regressionRisks": ["Filter context changes in only one representation."],
+      "fixture": {
+        "broken": "specialists/charts-broken.html",
+        "repaired": "specialists/charts-repaired.html",
+        "selector": "[data-case=\"charts\"]"
+      }
     }
   ],
   "negativeControls": [
@@ -390,6 +547,31 @@
       "id": "native-details",
       "fixture": "negative-controls.html",
       "protectedBehavior": "A native details element provides disclosure behavior without redundant ARIA."
+    },
+    {
+      "id": "specialist-authentication-negative",
+      "fixture": "specialists/negative-controls.html",
+      "protectedBehavior": "Native credential and whole-code inputs remain usable without unnecessary ARIA or security changes."
+    },
+    {
+      "id": "specialist-grid-negative",
+      "fixture": "specialists/negative-controls.html",
+      "protectedBehavior": "A native data table remains a table rather than gaining an unnecessary grid keyboard model."
+    },
+    {
+      "id": "specialist-dynamic-negative",
+      "fixture": "specialists/negative-controls.html",
+      "protectedBehavior": "Native details content remains discoverable without adding a live region."
+    },
+    {
+      "id": "specialist-combobox-negative",
+      "fixture": "specialists/negative-controls.html",
+      "protectedBehavior": "A native select retains its browser-provided selection model."
+    },
+    {
+      "id": "specialist-charts-negative",
+      "fixture": "specialists/negative-controls.html",
+      "protectedBehavior": "Accurate visible sales context and a table remain available without per-value tab stops."
     }
   ]
 }

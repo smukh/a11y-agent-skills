@@ -18,7 +18,7 @@
 ![Diagram showing the a11y-agent-skills audit, repair, verification, and regression-test workflow](https://github.com/user-attachments/assets/c0d9a68b-63de-49e8-9c4a-84775dc57d2d)
 
 An open-source accessibility quality layer for teams building interfaces with
-AI. Seven portable Agent Skills guide coding agents through reproducible
+AI. Twelve portable Agent Skills guide coding agents through reproducible
 evidence, conservative source fixes, scoped verification, and durable regression
 tests. Framework-independent Playwright and axe-core packages provide the
 deterministic core; React is the first tested framework fixture.
@@ -88,10 +88,10 @@ merely the presence of one attribute.
 
 ## Install the skills
 
-The canonical skills are the seven directories under `skills/`; hosts should use
-them directly.
+The canonical skills are the twelve directories under `skills/`; hosts should
+use them directly.
 
-From a local clone, install all seven for Codex without prompts:
+From a local clone, install all twelve for Codex without prompts:
 
 ```bash
 npx skills@1.5.9 add . --agent codex --yes
@@ -114,6 +114,30 @@ npx skills@1.5.9 add smukh/a11y-agent-skills --agent codex --yes
   [Agent Skills specification](https://agentskills.io/specification).
 
 All supported hosts use the same canonical skill files.
+
+## Specialist skills in 0.2.0
+
+The second release adds five specialist workflows to the original seven skills.
+All twelve remain portable and use the canonical `skills/` tree.
+
+| Skill                                                                                        | Use it for                                                                |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [accessible-authentication](skills/accessible-authentication/SKILL.md)                       | Login, MFA, OTP paste, recovery, and reauthentication                     |
+| [accessible-data-tables-and-grids](skills/accessible-data-tables-and-grids/SKILL.md)         | Table/grid decisions, editing, sorting, focus, and virtualization review  |
+| [accessible-dynamic-updates](skills/accessible-dynamic-updates/SKILL.md)                     | Status, SPA transitions, streaming, cancellation, and announcement review |
+| [accessible-combobox-and-autocomplete](skills/accessible-combobox-and-autocomplete/SKILL.md) | Suggestion popups, keyboard selection, and stale async responses          |
+| [accessible-charts-and-dashboards](skills/accessible-charts-and-dashboards/SKILL.md)         | Data alternatives, filtering, chart interpretation, and equivalent tasks  |
+
+For example: “Use accessible-combobox-and-autocomplete to review this city
+selector, reproduce an out-of-order response, and protect the selected value
+with a regression test.”
+
+Each specialist includes a focused reference guide, standards links, manual
+assistive-technology procedures, and paired behavioral fixtures. See the
+[specialist evaluation guide](docs/SPECIALIST-EVALUATION.md) for runnable tests,
+agent prompts, coverage limits, and negative controls. Browser assertions do not
+prove screen-reader speech or task usability with every AT combination. See
+[release notes](docs/releases/0.2.0.md) for version and packaging details.
 
 ## CLI
 

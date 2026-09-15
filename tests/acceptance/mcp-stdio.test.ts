@@ -12,6 +12,8 @@ import {
 } from "../../packages/core/src/index.js";
 import { startFixtureServer } from "../helpers/fixture-server.js";
 
+import { makeFinding, makeReport } from "../helpers/report.js";
+
 let fixtureServer: Awaited<ReturnType<typeof startFixtureServer>> | undefined;
 let client: Client | undefined;
 let transport: StdioClientTransport | undefined;
@@ -90,6 +92,37 @@ afterAll(async () => {
 });
 
 describe("MCP stdio acceptance", () => {
+  it("lists tools, compares reports, and returns rule help over stdio without a browser", async () => {
+    if (!client) throw new Error("MCP client did not start.");
+    const tools = await client.listTools();
+    expect(tools.tools.map((tool) => tool.name).sort()).toEqual(
+      [
+        "compare_reports",
+        "get_rule_help",
+        "run_keyboard_journey",
+        "scan_html",
+        "scan_page",
+        "verify_repair"
+      ].sort()
+    );
+    const comparison = comparisonReportSchema.parse(
+      await call("compare_reports", {
+        before: makeReport([makeFinding()]),
+        after: makeReport([])
+      })
+    );
+    expect(comparison.resolved).toHaveLength(1);
+    expect(comparison.new).toHaveLength(0);
+    const help = await call("get_rule_help", { ruleId: "image-alt" });
+    expect(help).toMatchObject({ ruleId: "image-alt", source: "axe-core" });
+  });
+
+  it("advertises the release version during the MCP handshake", async () => {
+    const manifest = JSON.parse(
+      await readFile(resolve("package.json"), "utf8")
+    ) as { version: string };
+    expect(client?.getServerVersion()?.version).toBe(manifest.version);
+  });
   it("starts the selected MCP entry and exercises all six tools", async () => {
     if (!fixtureServer) throw new Error("Fixture server did not start.");
     if (!client) throw new Error("MCP client did not start.");

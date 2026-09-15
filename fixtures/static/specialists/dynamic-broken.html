@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Response stream — broken fixture</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="dynamic.js" defer></script>
+  </head>
+  <body data-mode="broken">
+    <main id="main">
+      <h1>Response stream</h1>
+      <p>Local test fixture using synthetic data. Variant: broken.</p>
+      <section data-case="dynamic">
+        <p>Generate a short synthetic response. You can stop or retry it.</p>
+        <button id="generate">Generate response</button
+        ><button id="stop">Stop response</button
+        ><button id="fail">Simulate failure</button>
+        <h2>Response</h2>
+        <div id="answer"></div>
+        <p id="stream-status" role="status"></p>
+        <button id="after-stream">Continue reading</button>
+      </section>
+    </main>
+  </body>
+</html>

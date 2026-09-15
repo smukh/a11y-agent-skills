@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Verify your sign-in — repaired fixture</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="authentication.js" defer></script>
+  </head>
+  <body data-mode="repaired">
+    <main id="main">
+      <h1>Verify your sign-in</h1>
+      <p>Local test fixture using synthetic data. Variant: repaired.</p>
+      <section data-case="authentication">
+        <p id="hint">
+          Enter the six-digit test code 012345. You can paste the complete code.
+        </p>
+        <form id="otp-form" novalidate>
+          <fieldset>
+            <legend>Verification code</legend>
+            <div class="digits">
+              <label
+                ><span>Digit 1 of 6</span
+                ><input
+                  id="digit-0"
+                  inputmode="numeric"
+                  maxlength="1"
+                  aria-describedby="hint otp-error"
+                  autocomplete="one-time-code" /></label
+              ><label
+                ><span>Digit 2 of 6</span
+                ><input
+                  id="digit-1"
+                  inputmode="numeric"
+                  maxlength="1"
+                  aria-describedby="hint otp-error" /></label
+              ><label
+                ><span>Digit 3 of 6</span
+                ><input
+                  id="digit-2"
+                  inputmode="numeric"
+                  maxlength="1"
+                  aria-describedby="hint otp-error" /></label
+              ><label
+                ><span>Digit 4 of 6</span
+                ><input
+                  id="digit-3"
+                  inputmode="numeric"
+                  maxlength="1"
+                  aria-describedby="hint otp-error" /></label
+              ><label
+                ><span>Digit 5 of 6</span
+                ><input
+                  id="digit-4"
+                  inputmode="numeric"
+                  maxlength="1"
+                  aria-describedby="hint otp-error" /></label
+              ><label
+                ><span>Digit 6 of 6</span
+                ><input
+                  id="digit-5"
+                  inputmode="numeric"
+                  maxlength="1"
+                  aria-describedby="hint otp-error"
+              /></label>
+            </div>
+          </fieldset>
+          <p id="otp-error" class="error" role="alert"></p>
+          <button>Verify code</button
+          ><button type="button" id="expire">Simulate expiry</button
+          ><button type="button" id="resend">Resend test code</button>
+        </form>
+        <p id="auth-status" role="status"></p>
+      </section>
+    </main>
+  </body>
+</html>

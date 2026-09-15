@@ -9,7 +9,12 @@ const expectedSkills = [
   "accessible-forms",
   "dialog-accessibility",
   "accessible-component-review",
-  "accessibility-regression-test"
+  "accessibility-regression-test",
+  "accessible-authentication",
+  "accessible-data-tables-and-grids",
+  "accessible-dynamic-updates",
+  "accessible-combobox-and-autocomplete",
+  "accessible-charts-and-dashboards"
 ].sort();
 const errors: string[] = [];
 
@@ -61,7 +66,7 @@ const packagePaths = [
 ];
 const manifests = await Promise.all(packagePaths.map(json));
 const versions = new Set(manifests.map((manifest) => manifest.version));
-if (versions.size !== 1 || !versions.has("0.1.0"))
+if (versions.size !== 1 || !versions.has("0.2.0"))
   errors.push(`versions drifted: ${[...versions].join(", ")}`);
 
 const actualSkills = (await readdir(resolve("skills"), { withFileTypes: true }))
@@ -69,7 +74,7 @@ const actualSkills = (await readdir(resolve("skills"), { withFileTypes: true }))
   .map((entry) => entry.name)
   .sort();
 if (JSON.stringify(actualSkills) !== JSON.stringify(expectedSkills))
-  errors.push("canonical skill set differs from the seven advertised skills");
+  errors.push("canonical skill set differs from the twelve advertised skills");
 const claude = manifests[3];
 const claudeSkills = Array.isArray(claude?.skills)
   ? (claude.skills as string[]).map((path) => path.split("/").at(-1)).sort()

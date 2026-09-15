@@ -71,7 +71,7 @@ const scanShape = {
 };
 
 export function createServer(): McpServer {
-  const server = new McpServer({ name: "a11y-agent", version: "0.1.0" });
+  const server = new McpServer({ name: "a11y-agent", version: "0.2.0" });
 
   server.registerTool(
     "scan_page",

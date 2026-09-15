@@ -209,7 +209,7 @@ const program = new Command();
 program
   .name("a11y-agent")
   .description("Find the regression, fix the source, prove the repair.")
-  .version("0.1.0")
+  .version("0.2.0")
   .showSuggestionAfterError();
 
 addSharedOptions(

@@ -1,0 +1,40 @@
+{
+  "fixtureRevision": "gallery-2",
+  "prompts": [
+    {
+      "caseId": "specialist-authentication",
+      "skill": "accessible-authentication",
+      "prompt": "Review the local sign-in verification flow for users who paste codes. Reproduce the reported completion problem, repair its source, and add a regression test. Preserve the synthetic authentication policy.",
+      "entryUrl": "/specialists/authentication-broken.html",
+      "negativeControlPrompt": "Use accessible-authentication to review the relevant example at /specialists/negative-controls.html. Change it only if you reproduce a concrete accessibility barrier. Report the evidence and any manual checks still needed."
+    },
+    {
+      "caseId": "specialist-grid",
+      "skill": "accessible-data-tables-and-grids",
+      "prompt": "Review keyboard editing in the inventory grid. Save a quantity that changes row order, continue editing, and repair any task-continuity failure. Preserve sorting and editing.",
+      "entryUrl": "/specialists/grid-broken.html",
+      "negativeControlPrompt": "Use accessible-data-tables-and-grids to review the relevant example at /specialists/negative-controls.html. Change it only if you reproduce a concrete accessibility barrier. Report the evidence and any manual checks still needed."
+    },
+    {
+      "caseId": "specialist-dynamic",
+      "skill": "accessible-dynamic-updates",
+      "prompt": "Review the response generator for useful feedback while a user reads other content. Inspect the full stream, stop, and retry paths. Repair excessive or missing feedback while retaining content and controls.",
+      "entryUrl": "/specialists/dynamic-broken.html",
+      "negativeControlPrompt": "Use accessible-dynamic-updates to review the relevant example at /specialists/negative-controls.html. Change it only if you reproduce a concrete accessibility barrier. Report the evidence and any manual checks still needed."
+    },
+    {
+      "caseId": "specialist-combobox",
+      "skill": "accessible-combobox-and-autocomplete",
+      "prompt": "Review the city autocomplete under rapid typing and delayed network responses. Repair stale-result or keyboard-selection failures without removing suggestions. Include a deterministic response-order regression.",
+      "entryUrl": "/specialists/combobox-broken.html",
+      "negativeControlPrompt": "Use accessible-combobox-and-autocomplete to review the relevant example at /specialists/negative-controls.html. Change it only if you reproduce a concrete accessibility barrier. Report the evidence and any manual checks still needed."
+    },
+    {
+      "caseId": "specialist-charts",
+      "skill": "accessible-charts-and-dashboards",
+      "prompt": "Review sales information access in the quarterly dashboard. Change the quarter, compare the available representations, and fix any mismatch while preserving the filter and known data.",
+      "entryUrl": "/specialists/charts-broken.html",
+      "negativeControlPrompt": "Use accessible-charts-and-dashboards to review the relevant example at /specialists/negative-controls.html. Change it only if you reproduce a concrete accessibility barrier. Report the evidence and any manual checks still needed."
+    }
+  ]
+}

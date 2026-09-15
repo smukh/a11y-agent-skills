@@ -1,6 +1,6 @@
 {
   "name": "@a11y-agent/github-action",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "GitHub Action adapter for a11y-agent accessibility evidence and explicit regression thresholds.",
   "license": "MIT",
   "repository": {
