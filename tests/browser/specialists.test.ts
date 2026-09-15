@@ -346,7 +346,8 @@ describe("specialist behavioral fixtures", () => {
       const file = name === "negative-controls" ? name : `${name}-repaired`;
       const report = await scanPage({
         url: `${server.origin}/specialists/${file}.html`,
-        stateLabel: file
+        stateLabel: file,
+        allowPrivateNetwork: true
       });
       expect(
         report.findings.filter((finding) =>
